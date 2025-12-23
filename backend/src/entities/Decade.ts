@@ -21,6 +21,7 @@ export class Decade extends BaseEntity {
 	@Column({ type: "text", nullable: false })
 	name: string;
 
+	@Field()
 	@OneToMany(
 		() => Quiz,
 		(quiz) => quiz.decade,

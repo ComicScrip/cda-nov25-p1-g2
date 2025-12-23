@@ -13,6 +13,7 @@ import {
 import { Reward } from "./Reward";
 import { Quiz } from "./Quiz";
 import { Attempt } from "./Attempt";
+import type { AgeRange } from "../types";
 
 @ObjectType()
 @Entity()
@@ -31,7 +32,7 @@ export class User extends BaseEntity {
 
 	@Field()
 	@Column()
-	age_range: Enumerator;
+	age_range: AgeRange;
 
 	@Field()
 	@Column()
@@ -54,7 +55,8 @@ export class User extends BaseEntity {
 	updated_at: Date;
 
 	// one to many pour garder l'historique des données portées par l'association
-	@OneToMany(
+	@Field()
+  @OneToMany(
 		() => Attempt,
 		(attempt) => attempt.user,
 	)

@@ -16,6 +16,7 @@ import { Decade } from "./Decade";
 import { Question } from "./Question";
 import { User } from "./User";
 import { Attempt } from "./Attempt";
+import type { AgeRange } from "../types";
 
 @ObjectType()
 @Entity()
@@ -38,7 +39,7 @@ export class Quiz extends BaseEntity {
 
 	@Field()
 	@Column()
-	age_range: Enumerator;
+	age_range: AgeRange;
 
 	@Field()
 	@Column()
@@ -61,18 +62,21 @@ export class Quiz extends BaseEntity {
 	@UpdateDateColumn()
 	updated_at: Date;
 
+	@Field()
 	@ManyToOne(
 		() => Decade,
 		(decade) => decade.quizzes,
 	)
 	decade: Decade;
 
+	@Field()
 	@ManyToOne(
 		() => Category,
 		(category) => category.quizzes,
 	)
 	category: Category;
 
+	@Field()
 	@OneToMany(
 		() => Question,
 		(question) => question.quiz,

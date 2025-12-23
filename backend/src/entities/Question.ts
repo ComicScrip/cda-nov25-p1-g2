@@ -24,12 +24,14 @@ export class Question extends BaseEntity {
 	@Column({ type: "text", nullable: false })
 	title: string;
 
+	@Field()
 	@OneToMany(
 		() => Choice,
 		(choice) => choice.question,
 	)
 	choices: Choice[];
 
+	@Field()
 	@ManyToOne(
 		() => Quiz,
 		(quiz) => quiz.questions,
