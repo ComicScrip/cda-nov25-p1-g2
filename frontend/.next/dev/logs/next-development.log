@@ -1,5 +1,0 @@
-[00:00:02.953] Server  LOG      ✓ Ready in 2s
-[00:00:06.115] Server  LOG      ○ Compiling /signup ...
-[00:00:12.160] Server  LOG     {}
-[00:00:14.022] Browser LOG     {"uri":"http://localhost:4000"}
-[00:00:23.727] Browser LOG     Download the Apollo DevTools for a better development experience: %s https://addons.mozilla.org/en-US/firefox/addon/apollo-developer-tools/

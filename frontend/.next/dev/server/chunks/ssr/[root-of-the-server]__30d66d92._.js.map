@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/sandr/Formation_WCS/Projet_1/CODE/PROJET/cda-nov25-p1-g2/frontend/src/pages/signup.tsx"],"sourcesContent":["import { SignupForm } from \"@/components/signup-form\"\r\n\r\nexport default function Page() {\r\n  return (\r\n    <div className=\"flex min-h-svh w-full items-center justify-center p-6 md:p-10\">\r\n      <div className=\"w-full max-w-sm\">\r\n        <SignupForm />\r\n      </div>\r\n    </div>\r\n  )\r\n}"],"names":[],"mappings":";;;;;;;;;;;;AAEe,SAAS;IACtB,qBACE,qKAAC;QAAI,WAAU;kBACb,cAAA,qKAAC;YAAI,WAAU;sBACb,cAAA,qKAAC;;;;;;;;;;;;;;;AAIT"}}]
-}
