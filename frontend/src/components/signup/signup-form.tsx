@@ -1,4 +1,4 @@
-import * as React from "react"
+import {useState} from "react";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -17,8 +17,51 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { SignupInput, useSignupMutation } from "@/graphql/generated/schema";
+import { useRouter } from "next/router";
 
-export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
+
+export function SignupForm({ ...props } : React.ComponentProps<typeof Card>) {
+  
+  
+  // const onSubmit = async (data: SignupInput) => {
+  //   try {
+  //     await signup({variables: {data} });
+  //     alert("Inscription réussie !");
+  //     router.push("/");
+  //   } catch(err) {
+  //     console.error(err);
+  //   }
+  // };
+
+  const router = useRouter();
+  const [signup, {loading: isSubmitting, error}] = useSignupMutation();
+  const [email, setEmail] = useState("");
+  const [pseudo, setPseudo] = useState("");
+  const [password, setPassword] = useState("");
+  const [age_range, setAgeRange] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      //setError(null);
+      const result = await signup({
+        variables: {
+          data: {
+            email,
+            pseudo,
+            password,
+            age_range
+          },
+        },
+      });
+      alert("Inscription réussie !");
+      router.push("/");
+      } catch(err) {
+        console.error(err);
+      }
+  }
+
   return (
     <Card {...props}>
       <CardHeader>
@@ -28,7 +71,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={handleSubmit}>
           <FieldGroup>
 
             <Field>
@@ -38,6 +81,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 type="email"
                 placeholder="m@example.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
               <FieldDescription className="text-xs">
                 Nous utiliserons cet email pour vous contacter, nous ne le partagerons pas.
@@ -46,7 +90,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <Field>
               <FieldLabel htmlFor="pseudo">Pseudo</FieldLabel>
-              <Input id="pseudo" type="text" placeholder="Tom Cruise" required />
+              <Input id="pseudo" type="text" placeholder="Tom Cruise" required onChange={(e) => setPseudo(e.target.value)}/>
               <FieldDescription className="text-xs">
                 Votre pseudo aparaîtra à l'écran.
               </FieldDescription>
@@ -54,7 +98,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <Field>
             <FieldLabel>Tranche d'âge</FieldLabel>
-            <RadioGroup defaultValue="moins_12" className="flex gap-4">
+            <RadioGroup defaultValue="moins_12" className="flex gap-4" onValueChange={(val) => setAgeRange(val)}>
                 <div className="flex items-center space-x-2">
                 <RadioGroupItem value="moins_12" id="moins_12" />
                 <Label htmlFor="moins_12">Moins de 12 ans</Label>
@@ -78,7 +122,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <Field>
               <FieldLabel htmlFor="password">Mot de passe</FieldLabel>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)}/>
               <FieldDescription className="text-xs">
                 Le mot de passe doit contenir un minimum de 8 caractères, dont une minuscule, une majuscule, un chiffre et un caractère spécial.
               </FieldDescription>

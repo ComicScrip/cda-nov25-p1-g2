@@ -474,7 +474,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$apollo$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$apollo$2f$client$2f$link$2f$http$2f$HttpLink$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@apollo/client/link/http/HttpLink.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$apollo$2f$client$2f$cache$2f$inmemory$2f$inMemoryCache$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@apollo/client/cache/inmemory/inMemoryCache.js [client] (ecmascript)");
 ;
-const uri = ("TURBOPACK compile-time value", "http://localhost:3000");
+const uri = ("TURBOPACK compile-time value", "http://localhost:4000");
 console.log({
     uri
 });
@@ -507,11 +507,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$graphql$2f$client$2e$
 ;
 function App(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$compiler$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["c"])(4);
-    if ($[0] !== "456eb2a47614a0c4a948597e7e4decd7a049842af7d0b258b0fc98908038dcf0") {
+    if ($[0] !== "c9d2f4e9a74ca83fadec22c94c445435738cdc546ab48647d5b6485a9f1c4eb0") {
         for(let $i = 0; $i < 4; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "456eb2a47614a0c4a948597e7e4decd7a049842af7d0b258b0fc98908038dcf0";
+        $[0] = "c9d2f4e9a74ca83fadec22c94c445435738cdc546ab48647d5b6485a9f1c4eb0";
     }
     const { Component, pageProps } = t0;
     let t1;

@@ -40,7 +40,7 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ]);
 [__TURBOPACK__imported__module__$5b$externals$5d2f40$apollo$2f$client__$5b$external$5d$__$2840$apollo$2f$client$2c$__esm_import$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
 ;
-const uri = ("TURBOPACK compile-time value", "http://localhost:3000");
+const uri = ("TURBOPACK compile-time value", "http://localhost:4000");
 console.log({
     uri
 });
