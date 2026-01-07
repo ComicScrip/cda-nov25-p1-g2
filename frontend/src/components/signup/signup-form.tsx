@@ -17,22 +17,11 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { SignupInput, useSignupMutation } from "@/graphql/generated/schema";
+import { useSignupMutation } from "@/graphql/generated/schema";
 import { useRouter } from "next/router";
 
 
 export function SignupForm({ ...props } : React.ComponentProps<typeof Card>) {
-  
-  
-  // const onSubmit = async (data: SignupInput) => {
-  //   try {
-  //     await signup({variables: {data} });
-  //     alert("Inscription réussie !");
-  //     router.push("/");
-  //   } catch(err) {
-  //     console.error(err);
-  //   }
-  // };
 
   const router = useRouter();
   const [signup, {loading: isSubmitting, error}] = useSignupMutation();
@@ -44,7 +33,6 @@ export function SignupForm({ ...props } : React.ComponentProps<typeof Card>) {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      //setError(null);
       const result = await signup({
         variables: {
           data: {
@@ -119,7 +107,6 @@ export function SignupForm({ ...props } : React.ComponentProps<typeof Card>) {
               </FieldDescription>
             </Field>
 
-
             <Field>
               <FieldLabel htmlFor="password">Mot de passe</FieldLabel>
               <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)}/>
@@ -127,15 +114,6 @@ export function SignupForm({ ...props } : React.ComponentProps<typeof Card>) {
                 Le mot de passe doit contenir un minimum de 8 caractères, dont une minuscule, une majuscule, un chiffre et un caractère spécial.
               </FieldDescription>
             </Field>
-
-            {/* <Field>
-              <FieldLabel htmlFor="confirm-password">
-                Confirmer mot de passe
-              </FieldLabel>
-              <Input id="confirm-password" type="password" required />
-              <FieldDescription>Please confirm your password.</FieldDescription>
-            </Field> */}
-
             <FieldGroup>
               <Field>
                 <Button type="submit" variant="outline" className="cursor-pointer mb-4">Créer compte</Button>
