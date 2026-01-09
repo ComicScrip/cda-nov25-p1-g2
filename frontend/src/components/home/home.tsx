@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -45,14 +46,17 @@ export default function HomePage() {
       <div className="w-full max-w-md space-y-4">
         
         Image de présentation
-        <div className="flex justify-center">
-          <div className="relative w-full rounded-2xl overflow-hidden bg-sky-200">
+        <div className="flex justify-center relative">
+          <div className="w-full rounded-2xl overflow-hidden bg-sky-200">
             <img
               src="/forest_gump_assis.png"
               alt="Personnage"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover relative"
             />
           </div>
+          <Link href={"/signup"}>
+          <button className="absolute text-white bg-red-800 border-3 border-stone-600 px-1 py-1 rounded-lg left-0 bottom-0 text-sm hover:bg-red-600">S'inscrire</button>
+          </Link>
         </div>
 
         {/* Titre de section */}

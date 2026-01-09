@@ -3,9 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useLoginMutation } from "@/graphql/generated/schema";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
 
 export default function LoginForm(){
 
@@ -47,7 +47,6 @@ export default function LoginForm(){
         </div>
 
         {/* Formulaire de connexion */}
-       
             <Card className="bg-black border-gray-700" >
                 <CardContent className="pt-2">
                     <form onSubmit={handleSubmit}>
@@ -88,7 +87,7 @@ export default function LoginForm(){
                             Se connecter
                             </Button>
                             <FieldDescription className="px-6 text-center text-gray-400">
-                            Pas encore de compte ? <a href="#" className="text-white hover:underline">S'inscrire</a>
+                            Pas encore de compte ? <Link href="/signup" className="text-white hover:underline">S'inscrire</Link>
                             </FieldDescription>
                         </Field>
                         </FieldGroup>
@@ -96,7 +95,6 @@ export default function LoginForm(){
                     </form>
                 </CardContent>
                 </Card>
-
       </div>
     </div>
   )
