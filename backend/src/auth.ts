@@ -2,6 +2,7 @@ import { User } from "./entities/User";
 import jwt from "jsonwebtoken";
 import env from "./env";
 import { GraphQLContext } from "./types";
+import { UnauthenticatedError } from "./entities/errors";
 
 
 const cookieName = "authToken"
@@ -26,10 +27,42 @@ export async function startSession(context: GraphQLContext, user: User){
         secure: env.NODE_ENV === "production",
         sameSite: "strict",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-
     });
 
     return token;
 }
+
+export const verifyJWT = (token: string): JWTPayload | null => {
+    try {
+        return jwt.verify(token, env.JWT_SECRET) as JWTPayload;
+    } catch(err) {
+        return null;
+    }
+}
+
+export const getJWT = async (context: GraphQLContext): Promise<JWTPayload | null> => {
+    const token = context.req.cookies?.[cookieName];
+
+    if(!token) return null;
+    const payload = verifyJWT(token);
+
+    if(!payload) return null;
+    return payload;
+}
+
+export async function getCurrentUser(context: GraphQLContext): Promise<User> {
+    const jwt = await getJWT(context);
+    if(jwt === null) throw new UnauthenticatedError();
+    const currentUser = await User.findOne({where: {id: jwt.userId}});
+    
+    if(currentUser === null) throw new UnauthenticatedError()
+
+    return currentUser;
+}
+
+export async function endSession(context: GraphQLContext) {
+    context.res.clearCookie(cookieName);
+}
+
 
 
